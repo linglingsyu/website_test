@@ -75,18 +75,33 @@
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
 				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=login&#39;)">管理登入</button>
-				<div style="width:89%; height:480px;" class="dbor">
+				<div style="width:89%; height:480px;" class="dbor cent" >
 					<span class="t botli">校園映象區</span>
+					<div onclick="pp(1)"><img src="icon/up.jpg"></div>
+
+						<?php
+					$db = new DB('image');
+					$rows = $db->all(['sh'=>1]);
+					foreach($rows as $k => $row){
+					?>
+						<div id="ssaa<?= $k ?>" class="im"><img  style="width:150px;height:103px;" src="img/<?= $row['img'] ?>"></div>
+
+					<?php
+				}
+					?>
+			
+					<div onclick="pp(2)"><img src="icon/dn.jpg"></div>
+
 					<script>
 						var nowpage = 0,
-							num = 0;
+							num = <?= $db->count(['sh'=>1]); ?>;
 
 						function pp(x) {
 							var s, t;
 							if (x == 1 && nowpage - 1 >= 0) {
 								nowpage--;
 							}
-							if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+							if (x == 2 && (nowpage + 1)  <= num - 3) {
 								nowpage++;
 							}
 							$(".im").hide()
@@ -95,7 +110,7 @@
 								$("#ssaa" + t).show()
 							}
 						}
-						pp(1)
+						pp(1);
 					</script>
 				</div>
 			</div>

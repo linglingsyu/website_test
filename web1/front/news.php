@@ -16,7 +16,7 @@
 	<!--正中央-->
 	<div class="ct">更多消息顯示區</div>
 	<hr>
-	<ul class="ssaa" style="list-style-type:decimal;">
+	<ol class="ssaa" style="list-style-type:decimal;">
 		<?php
 		$db = new DB("news");
 		$div = 5;
@@ -33,7 +33,7 @@
 		<?php
 		}
 		?>
-	</ul>
+	</ol>
 	<div style="text-align:center;">
 		<a class="bl" style="font-size:30px;" href="?do=news&page=<?= $_GET['page']-1 ?>">&lt;&nbsp;</a>
 		<?php
