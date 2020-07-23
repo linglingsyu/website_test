@@ -26,7 +26,7 @@
 	<div id="main">
 		<a title="" href="?">
 
-			<div class="ti" style="background:url(img/<?= $row['img']  ?>); background-size:cover;"></div>
+			<div class="ti" title="<?= $row['text']  ?>" style="background:url(img/<?= $row['img']  ?>); background-size:cover;"></div>
 			<!--標題-->
 		</a>
 		<div id="ms">
@@ -74,8 +74,12 @@
 
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
-					<span class="t">進站總人數 :
-						1 </span>
+				<?php
+
+				$db = new DB("total");
+				$row = $db->find(1);
+				?>
+					<span class="t">進站總人數 :<?= $row['total'] ?></span>
 				</div>
 			</div>
 			<div class="di" style="height:540px; border:#999 1px solid; width:76.5%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
@@ -84,7 +88,7 @@
 					<tbody>
 						<tr>
 							<td style="width:70%;font-weight:800; border:#333 1px solid; border-radius:3px;" class="cent"><a href="?do=admin" style="color:#000; text-decoration:none;">後台管理區</a></td>
-							<td><button onclick="document.cookie=&#39;user=&#39;;location.replace(&#39;?&#39;)" style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
+							<td><button onclick="lo('index.php?do=login')" style="width:99%; margin-right:2px; height:50px;">管理登出</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -101,12 +105,20 @@ if(file_exists($file)){
 
 ?>
 			</div>
-			<div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;"></div>
-
+			<div id="alt" style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;">
+		</div>
 		</div>
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-			<span class="t" style="line-height:123px;"></span>
+
+		<span class="t" style="line-height:123px;">
+		<?php
+			$db = new DB("bottom");
+			$row = $db->find(1);
+			echo $row['bottom'];
+			?>
+		
+	</span>
 		</div>
 	</div>
 

@@ -3,6 +3,15 @@
 session_start();
 date_default_timezone_set("Asia/Taipei");
 
+
+if(empty($_SESSION['total'])){
+  $db = new DB("total");
+  $come = $db->find(1);
+  $come['total'] = $come['total']+1;
+  $_SESSION['total'] = $come['total'];
+  $db->save($come);
+}
+
 class DB{
   private $dsn = "mysql:host=localhost;charset=utf8;dbname=db99";
   private $root = "root";
@@ -95,6 +104,7 @@ class DB{
 function to($url){
   header("location:".$url);
 }
+
 
 ?>
 
