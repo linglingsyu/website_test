@@ -16,7 +16,7 @@ include_once "base.php";
         </tr>
         <?php
         $db = new db("menu");
-        $rows = $db->all();
+        $rows = $db->all(['parent'=>0]);
         foreach ($rows as $row) {
           $chk = ($row['sh']) ? "checked" : "";
         ?>

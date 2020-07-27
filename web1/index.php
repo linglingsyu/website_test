@@ -35,6 +35,28 @@
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">主選單區</span>
+					<?php
+						$db = new DB("menu");
+						$rows = $db->all(['parent'=>0,'sh'=>1]);
+						foreach($rows as $row){
+						?>
+					<div class="mainmu">
+						<a style="color:#000; font-size:13px; text-decoration:none;" href="<?= $row['link'] ?>"><?= $row['name'] ?></a>
+							<?php
+								$rows = $db->all(['parent'=>$row['id']]);
+								foreach($rows as $row){
+							?>
+								<div class="mw mainmu2" style="display:none;">
+									<a style="color:#000; font-size:13px; text-decoration:none;" href="<?= $row['link'] ?>"><?= $row['name'] ?></a>
+								</div>
+							<?php					
+								}
+							?>
+					</div>
+					<?php
+						}
+					?>
+										
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 				<?php

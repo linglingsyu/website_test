@@ -22,8 +22,8 @@ foreach($rows as $row){
   <tr>
   <td><input type="text" name="name[]" value="<?= $row['name']; ?>"></td>
   <td><input type="text" name="link[]" value="<?= $row['link']; ?>"></td>
-  <td><input type="checkbox" name="del[]" value="<?= $row['id']; ?>">></td>
-  <input type="hidden" name="id[]" value="<?= $row['id']; ?>">>
+  <td><input type="checkbox" name="del[]" value="<?= $row['id']; ?>"></td>
+  <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
   </tr>
   
 <?php
@@ -35,6 +35,7 @@ foreach($rows as $row){
 
 
 <br>
+<input type="hidden" name="parent" value="<?= $_GET['id'] ?>">
 <input type="submit" value="修改確定"><input type="reset" value="重置"><input onclick="more()" type="button" value="更多次選單">
 
 </form>
