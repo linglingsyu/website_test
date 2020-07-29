@@ -10,7 +10,7 @@
 				</table>
 				<div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
 					<p class="t cent botli">網站標題管理</p>
-					<form method="post"  action="?do=tii">
+					<form method="post"  action="api/edit_title.php">
 						<table width="100%">
 							<tbody>
 								<tr class="yel">
@@ -20,6 +20,22 @@
 									<td width="7%">刪除</td>
 									<td></td>
 								</tr>
+								<?php
+								$rows = $Title->all();
+								foreach($rows as $row){
+									$chk = 	($row['sh'] == 1)?" checked" :"";
+								?>
+								<tr>
+									<td width="45%"><img style="width:300px;height:30px" src="img/<?= $row['img']?>" ></td>
+									<td width="23%"><input type="text" name="text[]" value="<?= $row['text']?> "></td>
+									<td width="7%"><input type="radio" name="sh[]" value="<?=$row['id'] ?>" <?= $chk ?>></td>
+									<td width="7%"><input type="checkbox" name="del[]" value="<?=$row['id'] ?>"></td>
+									<input type="hidden" name="id[]" value="<?=$row['id'] ?>">
+									<td><input type="button" onclick="op(&#39;#cover&#39;,&#39;#cvr&#39;,&#39;modal/edit_title.php?id=<?=$row['id'] ?>&#39;)" value="更新圖片"></td>
+								</tr>
+								<?php
+								}
+								?>
 							</tbody>
 						</table>
 						<table style="margin-top:40px; width:70%;">
