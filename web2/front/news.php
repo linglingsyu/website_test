@@ -32,11 +32,18 @@
         <td>
           <?php
             if(!empty($_SESSION['user'])){
-              echo '<a href="">讚</a>';
-            }else{
-              echo '<a href="">收回讚</a>';
-            }
+              $chk = $Log->find(["user"=>$_SESSION['user'],"news"=>$row['id']]);
+              if(!empty($chk)){
           ?>
+          <a href="#" id="good<?=$row['id'] ?>" onclick="good('<?= $row['id'] ?>','2','<?= $_SESSION['user'] ?>')">收回讚</a>
+          <?php
+              }else{
+          ?>
+          <a href="#" id="good<?=$row['id'] ?>" onclick="good('<?= $row['id'] ?>','1','<?= $_SESSION['user'] ?>')">讚</a>
+    <?php 
+          }
+        }
+        ?>
         </td>
 
       </tr>

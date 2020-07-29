@@ -109,6 +109,8 @@ $Total = new DB("total");
 $User = new DB("user");
 $News = new DB("news");
 $Que = new DB("que");
+$Log = new DB("log");
+
 $data = $Total->find(["date"=>date("Y-m-d")]);
 			
 if(empty($data)){

@@ -3,6 +3,10 @@
     cursor: pointer;
     color: blue;
   }
+
+  .pop{
+   background:rgba(51,51,51,0.8); color:#FFF; min-height:100px; width:300px; position:fixed; display:none; z-index:9999; overflow:auto;
+  }
 </style>
 
 <fieldset>
@@ -27,9 +31,30 @@
         <td width="30%" class="tt"><?= $row['title'] ?></td>
         <td id="part">
           <div class="part"><?= mb_substr($row['text'], 0, 10)  ?></div>
-          <div class="all" style="display:none"><?= nl2br($row['text'])  ?></div>
+          <div class="pop" style="display:none"><?= nl2br($row['text'])  ?></div>
         </td>
-        <td>  <?= $row['good'] ?>個人說<img src="icon/02B03.jpg" style="width:20px;height:20px"></td>
+        <td> 
+           <span id="vie<?= $row['id'] ?>"> <?= $row['good'] ?></span>個人說<img src="icon/02B03.jpg" style="width:20px;height:20px"> - 
+          
+        <?php
+            if(!empty($_SESSION['user'])){
+              $chk = $Log->find(["user"=>$_SESSION['user'],"news"=>$row['id']]);
+              if(!empty($chk)){
+          ?>
+          <a href="#" id="good<?=$row['id'] ?>" onclick="good('<?= $row['id'] ?>','2','<?= $_SESSION['user'] ?>')">收回讚</a>
+          <?php
+              }else{
+          ?>
+          <a href="#" id="good<?=$row['id'] ?>" onclick="good('<?= $row['id'] ?>','1','<?= $_SESSION['user'] ?>')">讚</a>
+    <?php 
+          }
+        }
+        ?>
+          
+          
+        </td>
+
+
 
       </tr>
 
@@ -43,15 +68,15 @@
 
 <?php
 if($nowpage > 1 ){
-  echo '<a href="?do=news&page='.($nowpage-1).'"> < </a>';
+  echo '<a href="?do=pop&page='.($nowpage-1).'"> < </a>';
 }
 for($i=1;$i<= $total ; $i++){
   $size = ($i == $nowpage) ? "24px" : "16px";
-  echo '<a style="font-size:'.$size.'" href="?do=news&page='.$i.'">'.$i.'</a>';
+  echo '<a style="font-size:'.$size.'" href="?do=pop&page='.$i.'">'.$i.'</a>';
 }
 
 if($nowpage < $total){
-  echo '<a href="?do=news&page='.($nowpage+1).'"> > </a>';
+  echo '<a href="?do=pop&page='.($nowpage+1).'"> > </a>';
 }
 
 ?>
@@ -60,8 +85,8 @@ if($nowpage < $total){
 </fieldset>
 
 <script>
-  $(".tt").on("click", function() {
-    $(this).next().children().eq(0).toggle();
+  $(".tt").hover( function() {
+    // $(this).next().children().eq(0).toggle();
     $(this).next().children().eq(1).toggle();
   })
 </script>
