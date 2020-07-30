@@ -1,3 +1,4 @@
+<?php include_once "base.php" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <!-- saved from url=(0040)http://127.0.0.1/test/exercise/collage/? -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,7 +22,10 @@
 	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
 		<a title="" href="./home_files/home.htm">
-			<div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div>
+		<?php
+					$row = $Title->find(['sh'=>1]);
+					echo '<img src="img/'.$row['img'].'" title="'.$row['text'].'">';
+			?>
 			<!--標題-->
 		</a>
 		<div id="ms">
@@ -29,33 +33,46 @@
 				<div id="menuput" class="dbor">
 					<!--主選單放此-->
 					<span class="t botli">主選單區</span>
+					<?php
+						//主
+						$rows = $Menu->all(['sh'=>1,'parent'=>0]);
+						foreach($rows as $row){
+					?>
+					<div class="mainmu">
+					<a style="color:#000; font-size:13px; text-decoration:none;" href="<?= $row['link'] ?>">
+					<?= $row['name'] ?></a>
+						<?php
+							$subs = $Menu->all(['parent'=>$row['id']]);
+							foreach($subs as $sub){
+						?>
+													<div class="mainmu2 mw" style="display:none">
+													<a style="color:#000; font-size:13px; text-decoration:none;" href="<?= $sub['link'] ?>">
+													<?= $sub['name'] ?></a>
+													</div>
+						
+				<?php
+							}
+							echo "</div>";
+						}
+				?>
+				
+
+
+
+
+
 				</div>
+
+
+
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :
-						1 </span>
+					<?php
+								echo $Total->find(1)['total'];
+								?></span>
 				</div>
 			</div>
-			<div class="di" style="height:540px; border:#999 1px solid; width:53.2%; margin:2px 0px 0px 0px; float:left; position:relative; left:20px;">
-				<marquee scrolldelay="120" direction="left" style="position:absolute; width:100%; height:40px;">
-				</marquee>
-				<div style="height:32px; display:block;"></div>
-				<!--正中央-->
-				<script>
-					var lin = new Array();
-					var now = 0;
-					if (lin.length > 1) {
-						setInterval("ww()", 3000);
-						now = 1;
-					}
 
-					function ww() {
-						$("#mwww").html("<embed loop=true src='" + lin[now] + "' style='width:99%; height:100%;'></embed>")
-						//$("#mwww").attr("src",lin[now])
-						now++;
-						if (now >= lin.length)
-							now = 0;
-					}
-				</script>
 	<?php
 	$do = !empty($_GET['do']) ? $_GET['do'] : "main";
 	$file = "front/".	$do.".php";
@@ -66,9 +83,11 @@
 	}
 
 	?>
+
+			
 			<div class="di di ad" style="height:540px; width:23%; padding:0px; margin-left:22px; float:left; ">
 				<!--右邊-->
-				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=admin&#39;)">管理登入</button>
+				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=login&#39;)">管理登入</button>
 				<div style="width:89%; height:480px;" class="dbor">
 					<span class="t botli">校園映象區</span>
 					<script>
@@ -96,7 +115,9 @@
 		</div>
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-			<span class="t" style="line-height:123px;">頁尾</span>
+			<span class="t" style="line-height:123px;">			<?php
+								echo $Bottom->find(1)['bottom'];
+								?></span>
 		</div>
 	</div>
 

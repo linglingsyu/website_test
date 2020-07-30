@@ -12,6 +12,17 @@ $News = new DB("news");
 $Title = new DB("title");
 $Menu = new DB("menu");
 $Bottom = new DB("bottom");
+$Total = new DB("total");
+$User= new DB("user");
+
+
+if(empty($_SESSION['come'])){
+  //沒來過 
+    $come = $Total->find(1);
+    $come['total']++;
+    $Total->save($come);
+    $_SESSION['come'] = 1; 
+}
 
 class DB{
   private $pdo;

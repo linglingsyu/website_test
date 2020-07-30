@@ -22,7 +22,11 @@
 	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
 		<a title="" href="?">
-			<div class="ti" style="background:url(&#39;use/&#39;); background-size:cover;"></div>
+			<?php
+					$row = $Title->find(['sh'=>1]);
+					echo '<img src="img/'.$row['img'].'" title="'.$row['text'].'">';
+			?>
+
 			<!--標題-->
 		</a>
 		<div id="ms">
@@ -31,7 +35,7 @@
 					<!--主選單放此-->
 					<span class="t botli">後台管理選單</span>
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=title">
-						<div class="mainmu">
+						<div class="mainmu mw">
 							網站標題管理 </div>
 					</a>
 					<a style="color:#000; font-size:13px; text-decoration:none;" href="?do=ad">
@@ -71,16 +75,19 @@
 				</div>
 				<div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
 					<span class="t">進站總人數 :
-						1 </span>
+						<?php
+								echo $Total->find(1)['total'];
+								?>
+					</span>
 				</div>
 			</div>
 			<?php
-			$do = !empty($_GET['do']) ? $_GET['do'] : "ad";
+			$do = !empty($_GET['do']) ? $_GET['do'] : "title";
 			$file = "backend/" .	$do . ".php";
 			if (file_exists($file)) {
 				include $file;
 			} else {
-				include "backend/ad.php";
+				include "backend/title.php";
 			}
 
 			?>
@@ -103,7 +110,11 @@
 		</div>
 		<div style="clear:both;"></div>
 		<div style="width:1024px; left:0px; position:relative; background:#FC3; margin-top:4px; height:123px; display:block;">
-			<span class="t" style="line-height:123px;"></span>
+			<span class="t" style="line-height:123px;">
+			<?php
+								echo $Bottom->find(1)['bottom'];
+								?>
+		</span>
 		</div>
 	</div>
 
