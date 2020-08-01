@@ -21,7 +21,7 @@
 	</div>
 	<iframe style="display:none;" name="back" id="back"></iframe>
 	<div id="main">
-		<a title="" href="./home_files/home.htm">
+		<a title="" href="index.php">
 		<?php
 					$row = $Title->find(['sh'=>1]);
 					echo '<img src="img/'.$row['img'].'" title="'.$row['text'].'">';
@@ -57,10 +57,6 @@
 				?>
 				
 
-
-
-
-
 				</div>
 
 
@@ -90,16 +86,28 @@
 				<button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;" onclick="lo(&#39;?do=login&#39;)">管理登入</button>
 				<div style="width:89%; height:480px;" class="dbor">
 					<span class="t botli">校園映象區</span>
+				 		 <div class="cent" onclick="pp(1)"><img src="icon/up.jpg" ></div>
+					<div  class="cent ">
+						<?php
+						 $rows = $Image->all(['sh'=>1]);
+						 foreach($rows as $key => $row){				
+						?>
+						<img id="ssaa<?= $key ?>" class="im" style="width:150px;height:103px;" src="img/<?= $row['img']  ?>" alt="">
+						<?php				
+							}
+						?>
+					</div>
+					<div class="cent" onclick="pp(2)"><img src="icon/dn.jpg" ></div>
+
 					<script>
 						var nowpage = 0,
-							num = 0;
-
+							num = <?= $Image->count(['sh'=>1]) ?>;
 						function pp(x) {
 							var s, t;
-							if (x == 1 && nowpage - 1 >= 0) {
+							if (x == 1 && ((nowpage-1 ) >= 0)){
 								nowpage--;
 							}
-							if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+							if (x == 2 && (nowpage +1) <= (num - 3)) {
 								nowpage++;
 							}
 							$(".im").hide()
