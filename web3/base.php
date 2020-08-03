@@ -1,11 +1,11 @@
 <?php
 
 session_start();
-date_default_timezone_set("Aisa/Taipei");
+date_default_timezone_set("Asia/Taipei");
 class DB{
   private $pdo;
   private $table;
-  private $dsb = "mysql:host=localhost;charset=utf8;dbname=db03";
+  private $dsn = "mysql:host=localhost;charset=utf8;dbname=db03";
   private $root = "root";
   private $password = "";
 
@@ -88,8 +88,14 @@ class DB{
     return $this->pdo->exec($sql);
   }
 
-
-
 }
+
+function to($url){
+  header("location:".$url);
+}
+
+$Poster = new DB("poster");
+$Movie = new DB("movie");
+$Ord = new DB("ord");
 
 ?>
