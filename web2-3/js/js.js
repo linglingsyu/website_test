@@ -19,3 +19,5 @@ function good(id,type,user)
 		}
 	})
 }
+
+
