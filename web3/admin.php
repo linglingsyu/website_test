@@ -24,6 +24,14 @@ include_once "base.php";
     ABC影城票價全面八折優惠1個月
     </marquee>
   </div>
+  <div id="mm">
+  <div class="ct a rb" style="position:relative; width:101.5%; left:-1%; padding:3px; top:-9px;">
+    <a href="?do=admin&redo=tit">網站標題管理</a>|
+    <a href="?do=admin&redo=go">動態文字管理</a>|
+    <a href="?do=poster">預告片海報管理</a>|
+    <a href="?do=movie">院線片管理</a>|
+    <a href="?do=order">電影訂票管理</a> </div>
+  <div class="rb tab">
   <?php
   $do = empty($_GET['do'])? "main" : $_GET['do'];
   $file = "backend/".$do.".php";
@@ -33,6 +41,8 @@ include_once "base.php";
     include "backend/main.php";
   }
   ?>
+  </div>
+  </div>
   <div id="bo"> ©Copyright 2010~2014 ABC影城 版權所有 </div>
 </div>
 </body>
