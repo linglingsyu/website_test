@@ -52,7 +52,7 @@ $movie = $Movie->find($_GET['id']);
 </style>
 <div id="booking">
   <div class="booking">
-
+  <form action="api/order" method="post">
     <?php
 
     for ($i = 1; $i <= 20; $i++) {
@@ -61,12 +61,12 @@ $movie = $Movie->find($_GET['id']);
     ?>
       <div class="seat">
         <?= $col . "排" . $row . "號"; ?>
-        <input class="chk" type="checkbox"  name="chk<?= $i ?>" id="chk<?=$i?>">
+        <input class="chk" type="checkbox"  name="chk[]" id="chk<?=$i?>">
       </div>
     <?php
     }
     ?>
-
+  </form>
   </div>
 
   <hr>
@@ -74,7 +74,7 @@ $movie = $Movie->find($_GET['id']);
 <p>您選擇的電影是：<span id="m"></span> </p>
 <p>您選擇的時刻是：<span id="t"></span></p>
 <p>您已經勾選了<span id="q"></span>張票，最多可以購買四張票</p>
-<button type="buttom" onclick="prev()">上一步</button> <button type="button" onclick="finish()">完成訂購</button>
+<button type="buttom" onclick="prev()">上一步</button> <button>完成訂購</button>
 </div>
 
 
@@ -90,7 +90,6 @@ $movie = $Movie->find($_GET['id']);
     $.post("api/getdate.php", {
       id
     }, function(options) {
-      console.log(options);
       $("#date").html(options);
       getsession();
       $("#date").on("change", function() {
@@ -106,7 +105,6 @@ $movie = $Movie->find($_GET['id']);
       id,
       date
     }, function(sessions) {
-      console.log(sessions);
       $("#session").html(sessions);
     })
   }
@@ -146,8 +144,9 @@ $movie = $Movie->find($_GET['id']);
     let id = $("#movie").val();
     let date = $("#date").val();
     let session = $("#session").val();
+    let seat = $("input[name='chk']:checked");
+    console.log(seat);
     $.post("api/order.php",{id,date,session,count},function(res){
-      console.log(res);
     });
     // location.href=`?do=result&id=${id}&date=${date}&session&${session}`;
   }
