@@ -85,6 +85,7 @@ class DB{
     }else{
       $sql = "insert into `$this->table` (`".implode("`,`",array_keys($arg))."`) values ('".implode("','",$arg)."')";
     }
+    echo $sql;
     return $this->pdo->exec($sql);
   }
 
@@ -98,4 +99,5 @@ $Poster = new DB("poster");
 $Movie = new DB("movie");
 $Ord = new DB("ord");
 $arr = ['', '普遍級', '保護級', '輔導級', '限制級'];
+$session = ["14:00~16:00","16:00~18:00","18:00~20:00","20:00~22:00","22:00~24:00"];
 ?>
