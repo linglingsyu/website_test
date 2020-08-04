@@ -97,5 +97,5 @@ function to($url){
 $Poster = new DB("poster");
 $Movie = new DB("movie");
 $Ord = new DB("ord");
-
+$arr = ['', '普遍級', '保護級', '輔導級', '限制級'];
 ?>
