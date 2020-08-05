@@ -61,7 +61,7 @@
       foreach ($rows as $row) {
       ?>
         <div style="width:50%;display:flex;font-size:12px;">
-          <div><a href="?do=order&id=<?=$row['id']?>"><img src="img/<?= $row['img'] ?>" style="width:50px"></a></div>
+          <div><a href="?do=intro&id=<?=$row['id']?>"><img src="img/<?= $row['img'] ?>" style="width:50px"></a></div>
           <div style="display:inline-block;">
             <div><?= $row['name'] ?></div>
             <div>分級: <img src="icon/<?= $row['class'] ?>.png"> <?= $arr[$row['class']] ?></div>

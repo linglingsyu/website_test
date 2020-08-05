@@ -4,7 +4,7 @@ $ondate  = date("Y-m-d", strtotime("-2days"));
 $rows = $Movie->all(['sh' => 1], " && `date` <= '$today' && `date` >= '$ondate'");
 $movie = $Movie->find($_GET['id']);
 ?>
-
+  <form action="api/order.php" method="post">
 <div id="order">
   電影名稱<select name="movie" id="movie">
     <?php
@@ -19,6 +19,7 @@ $movie = $Movie->find($_GET['id']);
 
   </select><br>
   場次<select name="session" id="session"></select><br>
+  剩餘座位：<span id="q"></span><br>
   <input type="button" value="確定" onclick="booking()"><input type="reset" value="重置">
 </div>
 
@@ -29,7 +30,6 @@ $movie = $Movie->find($_GET['id']);
 
   .booking {
     width: 300px;
-    ;
     display: flex;
     flex-wrap: wrap;
 
@@ -52,21 +52,19 @@ $movie = $Movie->find($_GET['id']);
 </style>
 <div id="booking">
   <div class="booking">
-  <form action="api/order" method="post">
     <?php
-
+ 
     for ($i = 1; $i <= 20; $i++) {
       $col = floor(($i - 1) / 5) + 1;
       $row = (($i - 1) % 5) + 1;
     ?>
       <div class="seat">
         <?= $col . "排" . $row . "號"; ?>
-        <input class="chk" type="checkbox"  name="chk[]" id="chk<?=$i?>">
+        <input class="chk" type="checkbox"  name="chk[]" value="<?= $i ?>">
       </div>
     <?php
     }
     ?>
-  </form>
   </div>
 
   <hr>
@@ -74,8 +72,9 @@ $movie = $Movie->find($_GET['id']);
 <p>您選擇的電影是：<span id="m"></span> </p>
 <p>您選擇的時刻是：<span id="t"></span></p>
 <p>您已經勾選了<span id="q"></span>張票，最多可以購買四張票</p>
-<button type="buttom" onclick="prev()">上一步</button> <button>完成訂購</button>
+<button type="buttom" onclick="prev()">上一步</button> <input type="submit" value="完成訂購">
 </div>
+  </form>
 
 
 
@@ -106,6 +105,7 @@ $movie = $Movie->find($_GET['id']);
       date
     }, function(sessions) {
       $("#session").html(sessions);
+      getqt(); 
     })
   }
 
@@ -115,6 +115,16 @@ $movie = $Movie->find($_GET['id']);
     $("#booking").show();
     $("#m").html($("#movie option:selected").text());
     $("#t").html($("#date option:selected").text()+ "&nbsp;&nbsp;" + $("#session option:selected").text());
+  }
+
+  function getqt(){
+    let date = $("#date").val();
+    let session = $("#session").val();
+    let id = $("#movie").val();
+    $.post("api/qt.php",{id,date,session},function(res){
+      // console.log(res);
+      $("#q").html(res+"張");
+    })
   }
 
 
@@ -140,15 +150,5 @@ $movie = $Movie->find($_GET['id']);
     $("#booking").hide();
   }
 
-  function finish(){
-    let id = $("#movie").val();
-    let date = $("#date").val();
-    let session = $("#session").val();
-    let seat = $("input[name='chk']:checked");
-    console.log(seat);
-    $.post("api/order.php",{id,date,session,count},function(res){
-    });
-    // location.href=`?do=result&id=${id}&date=${date}&session&${session}`;
-  }
 
 </script>
