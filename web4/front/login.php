@@ -7,7 +7,7 @@ $b = rand(10,99);
 $c = $a+$b;
 ?>
 帳號：<input type="text" name="acc" id="acc"><br>
-密碼：<input type="password" name="acc" id="acc"><br>
+密碼：<input type="password" name="pw" id="pw"><br>
 驗證碼：<?= $a ."+" . $b . "=" ?><input type="text" name="num" id="num"><br>
 <button onclick="login()">確認</button>
 
@@ -19,14 +19,14 @@ $c = $a+$b;
     let num = $("#num").val();
     if(<?= $c ?> == num){
       $.post("api/login.php",{acc,pw},function(res){
-        if(res != "0"){
-          location.href="index.php"
+        if(res != 0){
+          location.href="index.php";
         }else{
           alert("帳號或密碼錯誤");
         }
       })
     }else{
-      alert("驗證碼錯誤");
+      alert("對不起，您輸入的驗證碼有誤請您重新登入");
       location.reload();
     }
   }

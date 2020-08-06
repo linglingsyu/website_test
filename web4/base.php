@@ -90,14 +90,15 @@ class DB{
 }
 
 function to($url){
-  header("location".$url);
+  header("location:".$url);
 }
 
 $Admin = new DB("admin");
 $Ord = new DB("admin");
-$Intro = new DB("intro");
+$Goods  = new DB("goods");
 $Member = new DB("member");
-
+$Bottom = new DB("bottom");
+$Type = new DB("type");
 
 
 ?>
