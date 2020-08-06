@@ -18,6 +18,7 @@ $c = $a+$b;
     let num = $("#num").val();
     if(<?= $c ?> == num){
       $.post("api/admin.php",{acc,pw},function(res){
+        console.log(res);
         if(res != 0){
           location.href="admin.php";
         }else{
