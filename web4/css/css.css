@@ -42,11 +42,12 @@ body
 #right
 {
 	display:inline-block;
-	width:65%;
+	width:70%;
 	padding:2%;
 	height:550px;
 	border:#000 1px solid;
 	overflow: auto;
+	font-size: 0.8rem;
 }
 #bottom
 {

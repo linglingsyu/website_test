@@ -10,7 +10,7 @@ foreach($big as $b){
 ?>
   <tr>
     <td class="tt"><?=$b['name']?></td>
-    <td class="tt"><button onclick="location.href='?do=edit_big&id=<?=$b['id']?>'">修改</button><button onclick="del(<?=$b['id']?>)">刪除</button></td>
+    <td class="tt"><button onclick="location.href='?do=edit_big&id=<?=$b['id']?>'">修改</button><button onclick="del_type(<?=$b['id']?>)">刪除</button></td>
    </tr>
     <?php
     $sec = $Type->all(['parent'=>$b['id']]);
@@ -18,7 +18,7 @@ foreach($big as $b){
     ?>
     <tr>
     <td class="pp"><?= $s['name']?></td>
-    <td class="pp"><button onclick="location.href='?do=edit_sec&id=<?=$s['id']?>'">修改</button><button onclick="del(<?=$s['id']?>)">刪除</button></td>
+    <td class="pp"><button onclick="location.href='?do=edit_sec&id=<?=$s['id']?>'">修改</button><button onclick="del_type(<?=$s['id']?>)">刪除</button></td>
     </tr>
 
   <?php      
@@ -64,7 +64,7 @@ foreach($rows as  $row){
   function getbig(){
          let big = $("#big").val();
        $.post("api/addbig.php",{big},function(res){
-         $("#biglist").html(res); 
+         $("#biglist").html(res);     
        })
   }
 
@@ -76,9 +76,15 @@ foreach($rows as  $row){
     })
   }
 
+  function del_type(id){
+    $.post("api/del.php",{"table":"type",id},function(res){
+         location.reload();
+    })
+  }
+
   function del(id){
-    $.post("api/del.php",{"table":"Goods",id},function(){
-        location.reload();
+    $.post("api/del.php",{"table":"goods",id},function(res){
+       location.reload();
     })
   }
 
