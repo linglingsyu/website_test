@@ -33,6 +33,31 @@ include_once "base.php";
                 </div>
                 <div id="left" class="ct">
                         <div style="min-height:400px;">
+                                <a href="?">全部商品(<?=$Goods->count(['sh'=>1]) ?>)</a>
+                                <?php
+                                $rows = $Type->all(['parent' => 0]);
+                                foreach ($rows as $row) {
+                                ?>
+                                <div class="ww">
+                                  <a href="?"><?= $row['name'] ?>(<?=$Goods->count(['big'=>$row['id']]) ?>)</a>
+
+                                  <?php
+                                  $sec = $Type->all(['parent'=>$row['id']]);
+                                  foreach($sec as $s){             
+                                  ?>
+                                        <div class="s">
+                                                <a class="all"  href="?"><?= $s['name'] ?>(<?=$Goods->count(['sec'=>$s['id']]) ?>)</a>
+                                        </div>
+
+                                  <?php
+                                  }
+                                  ?>
+
+                                </div>
+                                <?php
+                                }
+                                ?>
+
                         </div>
                         <span>
                                 <div>進站總人數</div>
@@ -52,11 +77,11 @@ include_once "base.php";
                         ?>
                 </div>
                 <div id="bottom" style="line-height:70px;background:url(icon/bot.png); color:#FFF;" class="ct">
-                <?php
-                $bot = $Bottom->find(1);
-                echo $bot['bottom'];
-                ?>
-                 </div>
+                        <?php
+                        $bot = $Bottom->find(1);
+                        echo $bot['bottom'];
+                        ?>
+                </div>
         </div>
 
 </body>
