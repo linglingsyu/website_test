@@ -85,7 +85,7 @@ class DB{
     }else{  
       $sql = "insert into `$this->table` (`".implode("`,`",array_keys($arg))."`) values ('".implode("','",$arg)."')";
     }
-    echo $sql;
+  
     return $this->pdo->exec($sql);
   }
 }
@@ -95,7 +95,7 @@ function to($url){
 }
 
 $Admin = new DB("admin");
-$Ord = new DB("admin");
+$Ord = new DB("ord");
 $Goods  = new DB("goods");
 $Member = new DB("member");
 $Bottom = new DB("bottom");

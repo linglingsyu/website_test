@@ -5,5 +5,5 @@ $row['acc'] = $_POST['acc'];
 $row['pw'] = $_POST['pw'];
 $row['pr'] = serialize($_POST['pr']);
 $Admin->save($row);
-to("../admin.php?do=th");
+to("../admin.php");
 ?>

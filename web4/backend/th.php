@@ -64,7 +64,8 @@ foreach($rows as  $row){
   function getbig(){
          let big = $("#big").val();
        $.post("api/addbig.php",{big},function(res){
-         $("#biglist").html(res);     
+         $("#biglist").html(res); 
+        //  location.reload();    
        })
   }
 

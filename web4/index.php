@@ -26,8 +26,24 @@ include_once "base.php";
                                 <a href="?do=news">最新消息</a> |
                                 <a href="?do=look">購物流程</a> |
                                 <a href="?do=cart">購物車</a> |
-                                <a href="?do=login">會員登入</a> |
-                                <a href="?do=admin">管理登入</a>
+                                <?php
+
+                                if(empty($_SESSION['mem'])){
+                                        echo '<a href="?do=login">會員登入</a>';
+                                }else{
+                                        echo '<a href="api/mem_logout.php">會員登出</a>';
+                                }
+                                ?>
+                                 |
+                                <?php
+
+                                if(empty($_SESSION['admin'])){
+                                        echo '<a href="?do=admin">管理登入</a>';
+                                }else{
+                                        echo '<a href="admin.php">返回管理</a>';
+                                }
+                                ?>
+                              
                         </div>
                         <marquee> 情人節特惠活動 &nbsp; 年終特賣會開跑了 </marquee>
                 </div>
@@ -39,14 +55,14 @@ include_once "base.php";
                                 foreach ($rows as $row) {
                                 ?>
                                 <div class="ww">
-                                  <a href="?"><?= $row['name'] ?>(<?=$Goods->count(['big'=>$row['id']]) ?>)</a>
+                                  <a href="?type=<?=$row['id']?>"><?= $row['name'] ?>(<?=$Goods->count(['sh'=>1,'big'=>$row['id']]) ?>)</a>
 
                                   <?php
                                   $sec = $Type->all(['parent'=>$row['id']]);
                                   foreach($sec as $s){             
                                   ?>
                                         <div class="s">
-                                                <a class="all"  href="?"><?= $s['name'] ?>(<?=$Goods->count(['sec'=>$s['id']]) ?>)</a>
+                                                <a class="all"  href="?type=<?=$s['id']?>"><?= $s['name'] ?>(<?=$Goods->count(['sh'=>1,'sec'=>$s['id']]) ?>)</a>
                                         </div>
 
                                   <?php

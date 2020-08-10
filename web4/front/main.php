@@ -1,23 +1,33 @@
 <?php
-$all = $Goods->all(['sh'=>1]);
-foreach($all as $al){
+$type = empty($_GET['type']) ? "0" : $_GET['type'];
+if($type == "0"){
+    $goods = $Goods->all(['sh'=>1]);
+    $nav = "全部商品";
+}else{
+    $ty = $Type->find($type);
+    if($ty['parent'] == "0"){
+        $goods = $Goods->all(['sh'=>1,'big'=>$type]);
+        $nav = $ty['name'];
+    }else{
+        $goods = $Goods->all(['sh'=>1,'sec'=>$type]);
+        $bi = $Type->find($ty['parent']);
+        $nav = $bi['name'] . " > " . $ty['name'];
+    }
+}
+
 ?>
 
-<h2 class="ct"><?=$al['name']?></h2>
-<img src="img/<?=$al['img']?>"  alt="">
-<div>
-    <?php
-    $big = $Type->find($al['big']); // good商品中big的數值=  type中的分類id
-    $sec = $Type->find($al['sec']);
-    ?>
-    分類：<?= $big['name'] ?> > <?= $sec['name'] ?><br>
-    編號：<?=$al['no']?><br>
-    價格：<?=$al['price']?><br>
-    詳細說明：<?=$al['intro']?><br>
-    庫存量：<?=$al['stock']?><br>
-</div>
-<div class="ct">購買數量<input type="number" value="1" name="qt" id="qt"><img src="icon/0402.jpg" alt=""></div>
+<h2><?=$nav?></h2>
+<?php 
+foreach($goods as $g){
+?>
+<a href="?do=detail&id=<?=$g['id']?>"><img src="img/<?=$g['img']?>" alt=""></a>
+<h4><?=$g['name']?></h4>
+<div>價錢：<?=$g['price']?><a href="?do=cart&id=<?=$g['id']?>&qt=1"><img src="icon/0402.jpg" alt=""></a></div>
+<div>規格：<?=$g['spec']?></div>
+<div>簡介：<?=mb_substr($g['intro'],0,20)?>...</div>
 
 <?php
 }
+
 ?>

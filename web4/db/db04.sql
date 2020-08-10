@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2020-08-07 05:47:39
+-- 產生時間： 2020-08-10 08:09:54
 -- 伺服器版本： 10.4.11-MariaDB
 -- PHP 版本： 7.4.6
 
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `acc`, `pw`, `pr`) VALUES
 (2, 'admin', '1234', 'a:5:{i:0;i:1;i:1;i:2;i:2;i:3;i:3;i:4;i:4;i:5;}'),
-(3, 'test123', '123', 'a:3:{i:0;s:1:\"1\";i:1;s:1:\"2\";i:2;s:1:\"3\";}');
+(3, 'test123', '123', 'a:5:{i:0;s:1:\"1\";i:1;s:1:\"2\";i:2;s:1:\"3\";i:3;s:1:\"4\";i:4;s:1:\"5\";}');
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE `bottom` (
 --
 
 INSERT INTO `bottom` (`id`, `bottom`) VALUES
-(1, '頁尾版權2023');
+(1, '頁尾版權2020');
 
 -- --------------------------------------------------------
 
@@ -92,7 +92,8 @@ INSERT INTO `goods` (`id`, `big`, `sec`, `no`, `name`, `price`, `spec`, `stock`,
 (5, 8, 15, '030203', '經典優雅時尚流行涼鞋', 2650, 'LL', 8, '0407.jpg', '優雅流線方型楦頭設計，結合簡潔線條綴飾，\r\n獨特的弧度與曲線美，突顯年輕優雅品味，\r\n是年輕上班族不可或缺的鞋款！\r\n全新美國運回，現貨附鞋盒', 1),
 (6, 9, 17, '040202', '寵愛天然藍寶女戒', 28000, '1克拉', 1, '0408.jpg', '◎典雅設計品味款\r\n◎藍寶為珍貴天然寶石之一，具有保值收藏\r\n◎專人設計製造，以貴重珠寶精緻鑲工製造', 1),
 (7, 10, 18, '050107', '反折式大容量手提肩背包', 888, 'L號', 15, '0409.jpg', '特色:反折式的包口設計,釘釦的裝飾,讓簡單的包型更增添趣味性\r\n材質:棉布\r\n顏色:藍色\r\n尺寸:長50cm寬20cm高41cm\r\n產地:日本\r\n', 1),
-(8, 10, 18, '060108', '男單肩包男', 650, '多功能', 7, '0410.jpg', '特色:男單肩包/電腦包/公文包/雙肩背包多用途\r\n材質:帆不\r\n顏色:黑色\r\n尺寸:深11cm寬42cm高33cm\r\n產地:香港', 1);
+(8, 10, 18, '060108', '男單肩包男', 650, '多功能', 7, '0410.jpg', '特色:男單肩包/電腦包/公文包/雙肩背包多用途\r\n材質:帆不\r\n顏色:黑色\r\n尺寸:深11cm寬42cm高33cm\r\n產地:香港', 1),
+(12, 7, 12, '790657', '選色器', 100, '三花', 1, '0407.jpg', 'nbmm', 1);
 
 -- --------------------------------------------------------
 
@@ -116,8 +117,7 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id`, `name`, `acc`, `pw`, `email`, `addr`, `tel`, `date`) VALUES
-(1, '喵咪蛋', 'test', '123', 'fsdfa@gsfdg', 'dfagf', '12345464', '2020-08-06'),
-(2, '王大明bb', 'bbb', 'bbb', 'bb@123', 'bb', 'bbb', '2020-08-06');
+(4, '院線片', 'test', '5678', 'fsdfa@fdsf', 'fsadgfasf', '5678', '2020-08-10');
 
 -- --------------------------------------------------------
 
@@ -143,7 +143,7 @@ CREATE TABLE `ord` (
 --
 
 INSERT INTO `ord` (`id`, `acc`, `name`, `date`, `addr`, `tel`, `email`, `goods`, `no`, `total`) VALUES
-(1, 'test', 'test', '2020-08-07', 'hello', '44555', 'aa@hotmail.com', 'a:1:{i:3;s:1:\"1\";}', '20200807426182', 1200);
+(4, 'test', '院線片99999', '2020-08-10', 'fsadgfasf', '013132121', 'fsdfa@fdsf', 'a:2:{i:1;s:1:\"1\";i:4;s:1:\"1\";}', '20200810705993', 2200);
 
 -- --------------------------------------------------------
 
@@ -234,25 +234,25 @@ ALTER TABLE `bottom`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `goods`
 --
 ALTER TABLE `goods`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `ord`
 --
 ALTER TABLE `ord`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `type`
 --
 ALTER TABLE `type`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
