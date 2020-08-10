@@ -1,5 +1,35 @@
+<form action="api/del_user.php" method="post">
 <fieldset>
-  <legend>會員註冊</legend>
+  <legend>帳號管理</legend>
+  <table>
+    <tr>
+      <td>帳號</td>
+      <td>密碼</td>
+      <td>刪除</td>
+    </tr>
+<?php
+$rows = $User->all();
+foreach($rows as $row){
+  if($row['acc'] != "admin"){
+?>
+    <tr>
+      <td><?=$row['acc']?></td>
+      <td><?= str_repeat("*",strlen($row['pw'])) ?></td>
+      <td><input type="checkbox" name="del[]" value="<?=$row['id'] ?>"></td>
+      <input type="hidden" name="id[]" value="<?=$row['id'] ?>">
+    </tr>
+<?php 
+  }
+}
+?>
+  </table>
+  <div class="ct"><input type="submit" value="確定刪除"><input type="reset" value="清空選取"></div>
+</fieldset>
+</form>
+
+
+
+  <h2>新增會員</h2>
   <h2>*請設定您要註冊的帳號及密碼(最長12個字元)</h2>
   <form action="">
   <table>
@@ -20,8 +50,7 @@
       <td><input type="text" name="email" id="email"></td>
     </tr>
   </table>
-</fieldset>
-<button type="button" onclick="reg()">註冊</button><input type="reset" value="清除">
+<button type="button" onclick="reg()">新增</button><input type="reset" value="清除">
 </form>
 
 <script>
