@@ -48,24 +48,24 @@ include_once "base.php"
                 </div>
                 <div id="left" class="ct">
                         <div style="min-height:400px;">
-                        <a href="">全部商品(<?=$Goods->count()?>)</a>
+                        <a href="index.php">全部商品(<?=$Goods->count(['sh'=>1])?>)</a>
                         <?php
-$rows = $Type->all(['parent'=>0]);
-foreach($rows as $row){
-        $tt = $Type->find($row['id']);
-?>
-        <div class="ww">
-                <a href="?do=th"><?=$row['name']?>(<?=$Goods->count(['big'=>$tt['id']])?>)</a>
-
-    <?php
-      $sub = $Type->all(['parent'=>$row['id']]);
-      foreach($sub as $s){
-                $mm = $Type->find($s['id']);
-    ?>
-     <div class="s">
-             <a style="background:#fff" href=""><?=$s['name']?>(<?=$Goods->count(['mid'=>$mm['id']])?>)</a>
-        </div>
+        $rows = $Type->all(['parent'=>0]);
+        foreach($rows as $row){
+                $tt = $Type->find($row['id']);
+        ?>
+                <div class="ww">
+                        <a href="?do=main&type=<?=$row['id']?>"><?=$row['name']?>(<?=$Goods->count(['sh'=>1,'big'=>$tt['id']])?>)</a>
         
+            <?php
+              $sub = $Type->all(['parent'=>$row['id']]);
+              foreach($sub as $s){
+                        $mm = $Type->find($s['id']);
+            ?>
+             <div class="s">
+                     <a style="background:yellow;" href="?Do=main&type=<?=$s['id']?>"><?=$s['name']?>(<?=$Goods->count(['sh'=>1,'mid'=>$mm['id']])?>)</a>
+                </div>
+                
     <?php
       }
     ?>

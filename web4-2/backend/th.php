@@ -28,10 +28,44 @@ foreach($rows as $row){
 ?>
 </table>
 
+
+
+<h1>商品管理</h1>
+<button onclick="location.href='?do=addgoods'">新增商品</button>
+<table>
+  <tr>
+    <td>編號</td>
+    <td>商品名稱</td>
+    <td>庫存量</td>
+    <td>狀態</td>
+    <td>操作</td>
+  </tr>
+  <?php
+    $rows = $Goods->all();
+    foreach($rows as $row){
+  ?>
+  <tr>
+    <td><?=$row['no']?></td>
+    <td><?=$row['name']?></td>
+    <td><?=$row['stock']?></td>
+    <td><?=$row['sh']? "販售中":"已下架" ?></td>
+    <td>
+    <button onclick="location.href='?do=editgoods&id=<?=$row['id']?>'">修改</button>
+    <button onclick="del(<?=$row['id']?>)">刪除</button>
+    <button onclick="sh(1,<?=$row['id']?>)">上架</button>
+    <button onclick="sh(2,<?=$row['id']?>)">下架</button>
+    </td>
+  </tr>
+  <?php
+}
+?>
+</table>
+
+
 <script>
 
 function del(id){
-    $.post("api/del.php",{"table":"type",id},function(){
+    $.post("api/del.php",{"table":"goods",id},function(){
       location.reload();
     })
   }
@@ -56,6 +90,13 @@ function del(id){
         location.reload();
     })
   }
+
+  function sh(type,id){
+    $.post("api/sh.php",{type,id},function(){
+      location.reload();
+    })
+    
+    }
 
 
 </script>

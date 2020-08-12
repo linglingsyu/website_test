@@ -97,4 +97,5 @@ $Admin = new DB("admin");
 $Bottom = new DB("bottom");
 $Type = new DB("type");
 $Goods = new DB("goods");
+$Ord = new DB("ord");
 ?>
