@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-date_default_timezone_set("Asia/Teipai");
+date_default_timezone_set("Asia/Taipei");
 class DB{
   private $pdo;
   private $table;
@@ -92,4 +92,9 @@ function to($url){
   header("location:".$url);
 }
 
+$Member = new DB("member");
+$Admin = new DB("admin");
+$Bottom = new DB("bottom");
+$Type = new DB("type");
+$Goods = new DB("goods");
 ?>
