@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2020-08-16 18:16:25
+-- 產生時間： 2020-08-18 20:45:54
 -- 伺服器版本： 10.4.11-MariaDB
 -- PHP 版本： 7.4.5
 
@@ -71,6 +71,17 @@ CREATE TABLE `ord` (
   `seat` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- 傾印資料表的資料 `ord`
+--
+
+INSERT INTO `ord` (`id`, `no`, `name`, `date`, `session`, `qt`, `seat`) VALUES
+(1, '202008180001', '片名1', '2020-08-18', '14:00-16:00', 3, 'a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}'),
+(2, '202008180004', '片名2', '2020-08-19', '14:00-16:00', 4, 'a:3:{i:0;i:17;i:1;i:1819;i:2;i:20;}'),
+(3, '202008180003', '片名3', '2020-08-18', '18:00-20:00', 2, 'a:2:{i:0;i:11;i:1;i:12;}'),
+(4, '202008180005', '片名4', '2020-08-19', '20:00-22:00', 1, 'a:1:{i:0;i:19;}'),
+(5, '202008180001', '片名5', '2020-08-18', '16:00-18:00', 3, 'a:3:{i:0;i:6;i:1;i:7;i:2;i:8;}');
+
 -- --------------------------------------------------------
 
 --
@@ -92,11 +103,11 @@ CREATE TABLE `poster` (
 
 INSERT INTO `poster` (`id`, `img`, `name`, `rank`, `sh`, `effect`) VALUES
 (1, '03A01.jpg', '預告片1', 1, 1, 1),
-(2, '03A02.jpg', '預告片2', 2, 0, 3),
+(2, '03A02.jpg', '預告片2', 2, 1, 3),
 (3, '03A03.jpg', '預告片3', 3, 1, 2),
-(4, '03A04.jpg', '預告片4', 4, 0, 3),
-(5, '03A05.jpg', '預告片6', 5, 0, 1),
-(6, '03A06.jpg', '預告片5', 6, 0, 2);
+(4, '03A04.jpg', '預告片4', 4, 1, 1),
+(5, '03A05.jpg', '預告片6', 5, 1, 3),
+(6, '03A06.jpg', '預告片5', 6, 1, 2);
 
 --
 -- 已傾印資料表的索引
@@ -134,7 +145,7 @@ ALTER TABLE `movie`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `ord`
 --
 ALTER TABLE `ord`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `poster`
