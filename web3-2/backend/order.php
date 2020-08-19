@@ -1,5 +1,5 @@
 <h1>訂購清單</h1>
-快速刪除：<input type="radio" name="type" value="date">依日期<input type="text" name="date" id="date">
+快速刪除：<input type="radio" name="type" value="date" checked>依日期<input type="text" name="date" id="date">
 依電影<input type="radio" name="type" value="name">
 <select name="movie" id="movie">
   <?php
@@ -50,7 +50,7 @@ foreach($rows as $row){
 </table>
 
 <script>
-  function q_tel(){
+  function q_del(){
     let type = $("input[name='type']:checked").val();
     let data;
       switch(type){
@@ -61,10 +61,16 @@ foreach($rows as $row){
           data = $("#date").val();
         break;
       }
-      $.post("api/q_del.php",{type,data},function(){
-        location.reload();
+      $.post("api/q_del.php",{type,data},function(res){
+         location.reload();
+          // console.log(res);
       })
+  }
 
+  function del(id){
+    $.post("api/del.php",{id},function(){
+        location.reload();
+    })
   }
 
 

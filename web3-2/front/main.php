@@ -142,13 +142,14 @@
 
 <style>
   .item {
-    width: 49%;
+    width: 48%;
     margin: 0 auto;
     display: inline-block;
     height: 190px;
     /* background: white; */
     border: 1px solid #fff;
-    margin: 3px 0;
+    margin: 2px 0;
+    font-size:12px;
   }
 
   .it {
