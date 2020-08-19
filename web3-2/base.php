@@ -94,6 +94,10 @@ function to($url){
   header("location:".$url);
 }
 
+function jto($url){
+  echo "location.href='".$url."'";
+}
+
 $Poster = new DB("poster");
 $Movie = new DB("movie");
 $Ord = new DB("ord");
