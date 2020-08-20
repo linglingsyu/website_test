@@ -1,0 +1,2 @@
+INSERT INTO `ord` (`id`, `no`, `movie`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '202008200002', '片2', '2020-08-20', '22:00-2400', '3', '<?=serialize([5,6,7])?>');
+INSERT INTO `ord` (`id`, `no`, `movie`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '202008200003', '片3', '2020-08-20', '22:00-2400', '3', '<?=serialize([8,9,10])?>');

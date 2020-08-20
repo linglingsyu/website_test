@@ -1,4 +1,5 @@
 <h2>預告片清單</h2>
+<form action="api/edit_poster.php" method="post">
 <table>
   <tr>
     <td>預告片海報</td>
@@ -14,14 +15,14 @@ foreach($rows as $row){
   <tr>
     <td><img src="img/<?=$row['img']?>" style="width:50%"></td>
     <td><?=$row['name']?></td>
-    <td><input type="text" name="rank" value="<?=$row['rank']?>"></td>
+    <td><input type="text" name="rank[]" value="<?=$row['rank']?>"></td>
     <td>
       <input type="checkbox" name="sh[]" value="<?=$row['id']?>" <?=$chk?>>顯示
       <input type="checkbox" name="del[]" value="<?=$row['id']?>">刪除
       <br>動畫:<select name="ani[]" id="">
-        <option value="1">淡進淡出</option>
-        <option value="2">縮放</option>
-        <option value="3">滑入滑出</option>
+        <option value="1" <?= $row['ani'] == "1" ? "selected" : ""; ?>>淡進淡出</option>
+        <option value="2" <?= $row['ani'] == "2" ? "selected" : ""; ?>>縮放</option>
+        <option value="3" <?= $row['ani'] == "3" ? "selected" : ""; ?>>滑入滑出</option>
       </select>
       <input type="hidden" name="id[]" value="<?=$row['id']?>">
     </td>
@@ -30,6 +31,9 @@ foreach($rows as $row){
 }
 ?>
 </table>
+<input type="submit" value="修改">
+</form>
+
 
 
 
