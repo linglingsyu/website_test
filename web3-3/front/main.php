@@ -66,15 +66,61 @@
           </div>
       </div>
     </div>
+
+    
+    <style>
+
+      .wrap{
+        width:400px;
+      }
+
+      .it{
+        display: inline-block;
+        width:190px;
+        margin:2.5px;
+        border:1px solid #ffffff;
+        height:230px;
+      }
+    </style>
+
     <div class="half">
       <h1>院線片清單</h1>
       <div class="rb tab" style="width:95%;">
-        <table>
-          <tbody>
-            <tr> </tr>
-          </tbody>
-        </table>
-        <div class="ct"> </div>
+        <div class="wrap">
+        <?php
+          $ondate =  date("Y-m-d",strtotime("-2 days"));
+          $today = date("Y-m-d");
+          $div = 4;
+          $nowpage =  empty($_GET['p'])? "1" : $_GET['p'];
+          $totalpage = ceil($Movie->count(['sh'=>1]," && `date` >= '$ondate' && `date` <= '$today' ")/$div);
+          $start = ($nowpage-1)*$div;
+          $rows = $Movie->all(['sh'=>1]," && `date` >= '$ondate' && `date` <= '$today' order by `rank` limit $start,$div");
+          foreach($rows as $row){
+       ?>
+         <div class="it">
+            <div>片名：<?=$row['name']?></div>
+            <div>
+                <div><img src="img/<?=$row['img']?>" style="width:30%"></div>
+                <div>分級：<?=$arr[$row['class']]?><br>
+                  上映日期：<?=$row['date']?>
+                </div>
+            </div>
+            <div><button onclick="location.href='?do=intro&id=<?=$row['id']?>'">劇情簡介</button><button onclick="location.href='?do=order&id=<?=$row['id']?>'">線上訂票</button></div>
+         </div>
+      <?php
+      }
+      ?>
+        </div>
+        <div class="ct"> 
+          <?php
+
+
+          for($i=1;$i<=$totalpage;$i++){
+            echo '<a href="?do=main&p='.$i.'">'.$i.'</a>';
+          }
+
+          ?>
+        </div>
       </div>
     </div>
 

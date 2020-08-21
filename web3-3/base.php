@@ -25,6 +25,7 @@ class DB{
     if(!empty($arg[1])){
       $sql = $sql . $arg[1];
     }
+    // echo $sql;
     return $this->pdo->query($sql)->fetchAll();
   }
 
