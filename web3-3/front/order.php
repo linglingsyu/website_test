@@ -73,16 +73,15 @@ function gettable(){
   })
 }
 
+seat = new Array();
 function aaa(){
      let movie = $("#movie").val();
      let date = $("#date").val();
      let session = $("#session").val();
      let count = 0;
-     let seat = new Array();
     $("#m").html(movie);
     $("#t").html(date+"  "+session);
     $(".chkbox").on("click",function(){
-  
   if($(this).prop("checked")){
     if(count<4){
       count++;
@@ -101,6 +100,13 @@ function aaa(){
 }
 
 function booking(){
+     let movie = $("#movie").val();
+     let date = $("#date").val();
+     let session = $("#session").val();
+     $.post("api/booking.php",{movie,date,session,seat},function(res){
+      //  console.log(res);
+         location.href=`?do=result&no=${res}`;
+     })
 
 }
 

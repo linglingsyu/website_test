@@ -43,9 +43,9 @@
           <div class="lists">
             <?php
             $rows = $Poster->all(['sh'=>1]," order by `rank` desc");
-            foreach($rows as $key => $row){
+            foreach($rows as $k => $row){
             ?>
-              <div class="list" data-ani="<?=$row['ani']?>"><img src="img/<?=$row['img']?>" style="height:250px;"><div><?=$row['name']?></div></div>
+              <div class="list"  id="ssbb<?=$k?>"  data-ani="<?=$row['ani']?>"><img src="img/<?=$row['img']?>" style="height:250px;"><div><?=$row['name']?></div></div>
             <?php
               }
             ?>
@@ -79,7 +79,7 @@
         width:190px;
         margin:2.5px;
         border:1px solid #ffffff;
-        height:230px;
+        height:180px;
       }
     </style>
 
@@ -129,6 +129,20 @@
        $(".list").eq(0).show();
        ani();
        let auto = setInterval(ani,3000);
+       $(".control").hover(function(){
+          clearInterval(auto);
+         },function(){
+          setInterval(ani,3000);
+         })
+
+        $(".control").on("click",function(){
+          let id = $(this).attr("id").replace("ssaa","");
+          $(".list").hide();
+          $("#ssbb"+id).show();
+          console.log(id);
+        }
+        )
+
        function ani(){
          let dom = $(".list:visible");
          let next;
@@ -156,9 +170,10 @@
               })
             break;
          }
-  
 
        }
+
+       
 
 
 			var nowpage = 0,
