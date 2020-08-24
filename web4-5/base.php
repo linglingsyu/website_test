@@ -5,7 +5,7 @@ date_default_timezone_set("Asia/Taipei");
 class DB{
   private $pdo;
   private $table;
-  private $dsn = "mysql:host=localhost;charset=utf8;dbname=db034";
+  private $dsn = "mysql:host=localhost;charset=utf8;dbname=db045";
   private $root = "root";
   private $password = "";
 
@@ -15,8 +15,8 @@ class DB{
   }
 
   public function all(...$arg){
-    $sql = "select * from `$this->table` ";
-    if(!empty($arg[0]) && is_array($arg)){
+    $sql = "select * from `$this->table`";
+    if(!empty($arg[0]) && is_array($arg[0])){
       foreach($arg[0] as $k => $v){
         $tmp[] = sprintf("`%s`='%s'",$k,$v);
       }
@@ -25,12 +25,11 @@ class DB{
     if(!empty($arg[1])){
       $sql = $sql . $arg[1];
     }
-    //echo $sql;
-    return $this->pdo->query($sql)->fetchAll();
+    return $this->pdo->query($sql)->fetchALL();
   }
 
   public function find($arg){
-    $sql = "select * from `$this->table` ";
+    $sql = "select * from `$this->table`";
     if(!empty($arg) && is_array($arg)){
       foreach($arg as $k => $v){
         $tmp[] = sprintf("`%s`='%s'",$k,$v);
@@ -39,13 +38,16 @@ class DB{
     }else{
       $sql = $sql . " where `id`='".$arg."'";
     }
-
     return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
   }
 
+  public function q($sql){
+    return $this->pdo->query($sql)->fetchAll();
+  }
+
   public function count(...$arg){
-    $sql = "select count(*) from `$this->table` ";
-    if(!empty($arg[0]) && is_array($arg)){
+    $sql = "select count(*) from `$this->table`";
+    if(!empty($arg[0]) && is_array($arg[0])){
       foreach($arg[0] as $k => $v){
         $tmp[] = sprintf("`%s`='%s'",$k,$v);
       }
@@ -58,7 +60,7 @@ class DB{
   }
 
   public function del($arg){
-    $sql = "delete from `$this->table` ";
+    $sql = "delete from `$this->table`";
     if(!empty($arg) && is_array($arg)){
       foreach($arg as $k => $v){
         $tmp[] = sprintf("`%s`='%s'",$k,$v);
@@ -70,18 +72,14 @@ class DB{
     return $this->pdo->exec($sql);
   }
 
-  public function q($sql){
-    return $this->pdo->query($sql)->fetchAll();
-  }
-
   public function save($arg){
     if(!empty($arg['id'])){
       foreach($arg as $k => $v){
-          if($k != "id"){
-            $tmp[] = sprintf("`%s`='%s'",$k,$v);
-          }
+         if($k != "id"){
+           $tmp[] = sprintf("`%s`='%s'",$k,$v);
+         }
       }
-      $sql = "update `$this->table` set " .implode(",",$tmp) . "where `id`=' ". $arg['id'] ." '";
+      $sql = "update `$this->table` set ". implode(",",$tmp)." where `id` = '".$arg['id']."'";
     }else{
       $sql = "insert into `$this->table` (`".implode("`,`",array_keys($arg))."`) values ('".implode("','",$arg)."')";
     }
@@ -94,13 +92,12 @@ function to($url){
   header("location:".$url);
 }
 
-function jto($url){
-  echo "location.href='".$url."'";
-}
-
-$Poster = new DB("poster");
-$Movie = new DB("movie");
+$Member = new DB("member");
+$Admin = new DB("admin");
+$Bottom = new DB("bottom");
+$Type = new DB("type");
+$Goods = new DB("goods");
 $Ord = new DB("ord");
-$arr = ['', '普遍級', '保護級', '輔導級', '限制級'];
-$session = ["14:00~16:00","16:00~18:00","18:00~20:00","20:00~22:00","22:00~24:00"];
+
+
 ?>
