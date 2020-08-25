@@ -58,6 +58,7 @@
        }
       ?>
       </div>
+
       <div class="controls"> 
         
       <div class="left" onclick="pp(1)"><img src="icon/left.jpg" alt=""></div>

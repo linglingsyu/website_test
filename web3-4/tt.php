@@ -1,9 +1,9 @@
-<!-- INSERT INTO `ord` (`id`, `no`, `name`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '202008220006', '片名6', '2020-08-22', '14:00~16:00', '1', '<?=serialize([20])?>');
-INSERT INTO `ord` (`id`, `no`, `name`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '202008220007', '片名7', '2020-08-22', '20:00~22:00', '3', '<?=serialize([17,18,19])?>');
-INSERT INTO `ord` (`id`, `no`, `name`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '202008220008', '片名6', '2020-08-22', '20:00~22:00', '4', '<?=serialize([14,15,16,17])?>');
-INSERT INTO `ord` (`id`, `no`, `name`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '202008220009', '片名7', '2020-08-22', '22:00~24:00', '2', '<?=serialize([7,8])?>');
-INSERT INTO `ord` (`id`, `no`, `name`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '2020082200010', '片名5', '2020-08-22', '18:00~20:00', '2', '<?=serialize([9,10])?>');
-INSERT INTO `ord` (`id`, `no`, `name`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '2020082200011', '片名3', '2020-08-22', '20:00~22:00', '2', '<?=serialize([13,12])?>'); -->
+INSERT INTO `ord` (`id`, `no`, `movie`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '202008220006', '片名4', '2020-08-25', '14:00~16:00', '1', '<?=serialize([20])?>');
+INSERT INTO `ord` (`id`, `no`, `movie`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '202008220007', '片名1', '2020-08-25', '20:00~22:00', '3', '<?=serialize([17,18,19])?>');
+INSERT INTO `ord` (`id`, `no`, `movie`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '202008220008', '片名2', '2020-08-26', '20:00~22:00', '4', '<?=serialize([14,15,16,17])?>');
+INSERT INTO `ord` (`id`, `no`, `movie`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '202008220009', '片名3', '2020-08-25', '22:00~24:00', '2', '<?=serialize([7,8])?>');
+INSERT INTO `ord` (`id`, `no`, `movie`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '2020082200010', '片名5', '2020-08-25', '18:00~20:00', '2', '<?=serialize([9,10])?>');
+INSERT INTO `ord` (`id`, `no`, `movie`, `date`, `session`, `qt`, `seat`) VALUES (NULL, '2020082200011', '片名3', '2020-08-25', '20:00~22:00', '2', '<?=serialize([13,12])?>');
 
 
 
